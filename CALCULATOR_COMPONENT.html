@@ -1,0 +1,166 @@
+<!-- CALCULATOR COMPONENT - Include this in any page where you want the calculator -->
+
+<section id="calculator" class="calculator-section" style="display: block !important; padding: 80px 0;">
+  <div class="container">
+    <h2 style="font-size: 48px; color: #1a1a1a; margin-bottom: 16px; text-align: center;">Калькулятор стоимости</h2>
+    <p class="calculator-subtitle" style="font-size: 18px; color: #666; margin-bottom: 48px; text-align: center;">Рассчитайте стоимость посещения сауны</p>
+    
+    <div class="calculator-wrapper" style="background: white; border-radius: 16px; padding: 48px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);">
+      <form class="calculator-form" id="saunaCalculator" style="display: flex; flex-direction: column; gap: 32px;">
+        
+        <!-- Service Type -->
+        <div class="form-group">
+          <label>Выберите тип услуги:</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="serviceType" value="vip" checked>
+              <span>VIP Sauna</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="serviceType" value="lux">
+              <span>LUX Sauna</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="serviceType" value="drovami">
+              <span>На дровах или Хамам</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="serviceType" value="mix">
+              <span>Русская сауна + Хамам (+30%)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Hours Selection -->
+        <div class="form-group">
+          <label style="font-weight: 600; font-size: 15px; color: #1a1a1a;">Количество часов:</label>
+          <div class="guests-grid" style="display: grid; grid-template-columns: 1fr; gap: 20px; width: fit-content;">
+            <div class="guest-input">
+              <label for="hours" style="font-size: 13px; font-weight: 500; color: #666;">Часы</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="hours">−</button>
+                <input type="number" id="hours" name="hours" min="2" value="2" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="hours">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date/Time Selection -->
+        <div class="form-group">
+          <label>Выберите период:</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="period" value="weekday" checked>
+              <span>Будни (Чт весь день, Пт до 16:00)</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="period" value="weekend">
+              <span>Выходные (Пт после 16:00, Сб-Вс)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Guests Count -->
+        <div class="form-group">
+          <label style="font-weight: 600; font-size: 15px; color: #1a1a1a;">Количество гостей:</label>
+          <div class="guests-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <div class="guest-input">
+              <label for="adultsCount" style="font-size: 13px; font-weight: 500; color: #666;">Взрослые (12+)</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="adultsCount">−</button>
+                <input type="number" id="adultsCount" name="adultsCount" min="0" value="2" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="adultsCount">+</button>
+              </div>
+            </div>
+            <div class="guest-input">
+              <label for="childrenOld" style="font-size: 13px; font-weight: 500; color: #666;">Дети 6-12 лет</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="childrenOld">−</button>
+                <input type="number" id="childrenOld" name="childrenOld" min="0" value="0" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="childrenOld">+</button>
+              </div>
+            </div>
+            <div class="guest-input">
+              <label for="childrenYoung" style="font-size: 13px; font-weight: 500; color: #666;">Дети до 6 лет</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="childrenYoung">−</button>
+                <input type="number" id="childrenYoung" name="childrenYoung" min="0" value="0" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="childrenYoung">+</button>
+              </div>
+              <p class="guest-hint" style="font-size: 11px; color: #999; margin: 6px 0 0 0; font-style: italic;">бесплатно</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="form-group">
+          <label style="font-weight: 600; font-size: 15px; color: #1a1a1a;">Дополнительные услуги:</label>
+          <div class="services-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <div class="service-input">
+              <label for="banshchikCount" style="font-size: 13px; font-weight: 500; color: #666;">Банщик (заходов)</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="banshchikCount">−</button>
+                <input type="number" id="banshchikCount" name="banshchikCount" min="0" value="0" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="banshchikCount">+</button>
+              </div>
+              <p class="service-hint" style="font-size: 11px; color: #AB8C6B; margin: 4px 0 0 0;">12.50€ за заход</p>
+            </div>
+            <div class="service-input">
+              <label for="birchVeniki" style="font-size: 13px; font-weight: 500; color: #666;">Березовый веник</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="birchVeniki">−</button>
+                <input type="number" id="birchVeniki" name="birchVeniki" min="0" value="0" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="birchVeniki">+</button>
+              </div>
+              <p class="service-hint" style="font-size: 11px; color: #AB8C6B; margin: 4px 0 0 0;">9.00€ за штуку</p>
+            </div>
+            <div class="service-input">
+              <label for="oakVeniki" style="font-size: 13px; font-weight: 500; color: #666;">Дубовый веник</label>
+              <div class="counter-input">
+                <button type="button" class="counter-btn counter-minus" data-for="oakVeniki">−</button>
+                <input type="number" id="oakVeniki" name="oakVeniki" min="0" value="0" class="counter-value">
+                <button type="button" class="counter-btn counter-plus" data-for="oakVeniki">+</button>
+              </div>
+              <p class="service-hint" style="font-size: 11px; color: #AB8C6B; margin: 4px 0 0 0;">10.00€ за штуку</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="price-breakdown" style="background: rgba(171, 140, 107, 0.03); border: 2px solid rgba(171, 140, 107, 0.1); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+          <div class="price-row" style="display: flex; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Базовая цена:</span>
+            <span id="basePrice" style="font-weight: 600;">25.00 €</span>
+          </div>
+          <div class="price-row" id="extraAdultsRow" style="display: none; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Дополнительные взрослые:</span>
+            <span id="extraAdultsPrice" style="font-weight: 600;">0.00 €</span>
+          </div>
+          <div class="price-row" id="childrenRow" style="display: none; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Дети 6-12 лет:</span>
+            <span id="childrenPrice" style="font-weight: 600;">0.00 €</span>
+          </div>
+          <div class="price-row" id="banshchikRow" style="display: none; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Услуги банщика:</span>
+            <span id="banshchikPrice" style="font-weight: 600;">0.00 €</span>
+          </div>
+          <div class="price-row" id="birchVenikiRow" style="display: none; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Березовые веники:</span>
+            <span id="birchVenikiPrice" style="font-weight: 600;">0.00 €</span>
+          </div>
+          <div class="price-row" id="oakVenikiRow" style="display: none; justify-content: space-between; align-items: center; font-size: 15px; color: #555; padding-bottom: 8px; border-bottom: 1px solid rgba(171, 140, 107, 0.1);">
+            <span>Дубовые веники:</span>
+            <span id="oakVenikiPrice" style="font-weight: 600;">0.00 €</span>
+          </div>
+          <div class="price-row total" style="display: flex; justify-content: space-between; align-items: center; border: none; border-top: 2px solid #AB8C6B; padding-top: 12px; padding-bottom: 0; font-size: 18px; font-weight: 700; color: #AB8C6B; margin-top: 8px;">
+            <span>ИТОГО:</span>
+            <span id="totalPrice" style="color: #AB8C6B;">25.00 €</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn" id="bookButton" style="margin-top: 24px; width: 100%; padding: 14px 24px; background: #AB8C6B; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">Забронировать</button>
+      </form>
+    </div>
+  </div>
+</section>
