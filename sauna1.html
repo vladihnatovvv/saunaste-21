@@ -264,94 +264,22 @@
                 <input type="hidden" name="serviceType" value="massage">
 
                 <div class="form-group">
-                    <label>Количество часов:</label>
+                    <label>Количество минут:</label>
                     <div class="guest-input">
-                        <label for="hours">Часы</label>
+                        <label for="minutes">Минуты</label>
                         <div class="counter-input">
-                            <button type="button" class="counter-btn counter-minus" data-for="hours">−</button>
-                            <input type="number" id="hours" name="hours" min="2" value="2" class="counter-value">
-                            <button type="button" class="counter-btn counter-plus" data-for="hours">+</button>
+                            <button type="button" class="counter-btn counter-minus" data-for="minutes">−</button>
+                            <input type="number" id="minutes" name="minutes" min="15" value="60" class="counter-value">
+                            <button type="button" class="counter-btn counter-plus" data-for="minutes">+</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Выберите период:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="period" value="weekday" checked>
-                            <span>Будни (Чт весь день, Пт до 16:00)</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="period" value="weekend">
-                            <span>Выходные (Пт после 16:00, Сб-Вс)</span>
-                        </label>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Количество гостей:</label>
-                    <div class="guests-grid">
-                        <div class="guest-input">
-                            <label for="adultsCount">Взрослые (12+)</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="adultsCount">−</button>
-                                <input type="number" id="adultsCount" name="adultsCount" min="0" value="2" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="adultsCount">+</button>
-                            </div>
-                        </div>
-                        <div class="guest-input">
-                            <label for="childrenOld">Дети 6-12 лет</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="childrenOld">−</button>
-                                <input type="number" id="childrenOld" name="childrenOld" min="0" value="0" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="childrenOld">+</button>
-                            </div>
-                        </div>
-                        <div class="guest-input">
-                            <label for="childrenYoung">Дети до 6 лет</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="childrenYoung">−</button>
-                                <input type="number" id="childrenYoung" name="childrenYoung" min="0" value="0" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="childrenYoung">+</button>
-                            </div>
-                            <p class="guest-hint">бесплатно</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Дополнительные услуги:</label>
-                    <div class="services-grid">
-                        <div class="service-input">
-                            <label for="banshchikCount">Банщик (заходов)</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="banshchikCount">−</button>
-                                <input type="number" id="banshchikCount" name="banshchikCount" min="0" value="0" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="banshchikCount">+</button>
-                            </div>
-                            <p class="service-hint">12.50€ за заход</p>
-                        </div>
-                        <div class="service-input">
-                            <label for="birchVeniki">Березовый веник</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="birchVeniki">−</button>
-                                <input type="number" id="birchVeniki" name="birchVeniki" min="0" value="0" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="birchVeniki">+</button>
-                            </div>
-                            <p class="service-hint">9.00€ за штуку</p>
-                        </div>
-                        <div class="service-input">
-                            <label for="oakVeniki">Дубовый веник</label>
-                            <div class="counter-input">
-                                <button type="button" class="counter-btn counter-minus" data-for="oakVeniki">−</button>
-                                <input type="number" id="oakVeniki" name="oakVeniki" min="0" value="0" class="counter-value">
-                                <button type="button" class="counter-btn counter-plus" data-for="oakVeniki">+</button>
-                            </div>
-                            <p class="service-hint">10.00€ за штуку</p>
-                        </div>
-                    </div>
-                </div>
+                <p class="guest-hint" style="margin-top: 20px; font-size: 14px; color: #666;">
+                    <strong>Стоимость: 1€ за минуту</strong>
+                </p>
 
                 <button type="button" class="btn" id="bookButton">Забронировать</button>
             </form>
@@ -361,32 +289,12 @@
                     <h3>Смета</h3>
                     <div class="price-breakdown">
                         <div class="price-row">
-                            <span>Базовая цена:</span>
-                            <span id="basePrice">25.00 € (2 ч.)</span>
-                        </div>
-                        <div class="price-row" id="extraAdultsRow" style="display: none;">
-                            <span>Дополнительные взрослые:</span>
-                            <span id="extraAdultsPrice">0.00 €</span>
-                        </div>
-                        <div class="price-row" id="childrenRow" style="display: none;">
-                            <span>Дети 6-12 лет:</span>
-                            <span id="childrenPrice">0.00 €</span>
-                        </div>
-                        <div class="price-row" id="banshchikRow" style="display: none;">
-                            <span>Услуги банщика:</span>
-                            <span id="banshchikPrice">0.00 €</span>
-                        </div>
-                        <div class="price-row" id="birchVenikiRow" style="display: none;">
-                            <span>Березовые веники:</span>
-                            <span id="birchVenikiPrice">0.00 €</span>
-                        </div>
-                        <div class="price-row" id="oakVenikiRow" style="display: none;">
-                            <span>Дубовые веники:</span>
-                            <span id="oakVenikiPrice">0.00 €</span>
+                            <span>Стоимость массажа:</span>
+                            <span id="basePrice">60.00 € (60 мин)</span>
                         </div>
                         <div class="price-row total">
                             <span>ИТОГО:</span>
-                            <span id="totalPrice">25.00 €</span>
+                            <span id="totalPrice">60.00 €</span>
                         </div>
                     </div>
                 </div>

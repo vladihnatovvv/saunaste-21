@@ -1,32 +1,32 @@
 // Static pricing data derived from the shared chart.
 const pricingTable = {
   lux: {
-    weekday: [25.0, 33.0, 36.0, 40.0, 45.0, 49.0, 52.0, 54.0, 60.0],
-    weekend: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0]
+    weekday: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0],
+    weekend: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0]
   },
   drovami: {
-    weekday: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0],
+    weekday: [42.0, 51.0, 54.0, 60.0, 66.0, 70.0, 72.0, 76.0, 80.0],
     weekend: [42.0, 51.0, 54.0, 60.0, 66.0, 70.0, 72.0, 76.0, 80.0]
   },
   mix: {
     weekday: [55.0, 63.0, 68.0, 75.0, 83.0, 88.0, 92.0, 96.0, 100.0],
-    weekend: [63.0, 68.0, 75.0, 83.0, 88.0, 92.0, 96.0, 100.0, 105.0]
+    weekend: [55.0, 63.0, 68.0, 75.0, 83.0, 88.0, 92.0, 96.0, 100.0]
   },
   fishbanua: {
     weekday: [25.0, 33.0, 36.0, 40.0, 45.0, 49.0, 52.0, 54.0, 60.0],
     weekend: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0]
   },
   hamam: {
-    weekday: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0],
-    weekend: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0]
+    weekday: [42.0, 51.0, 54.0, 60.0, 66.0, 70.0, 72.0, 76.0, 80.0],
+    weekend: [42.0, 51.0, 54.0, 60.0, 66.0, 70.0, 72.0, 76.0, 80.0]
   },
   massage: {
     weekday: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0],
     weekend: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0]
   },
   vip: {
-    weekday: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0],
-    weekend: [40.0, 45.0, 50.0, 55.0, 60.0, 63.0, 68.0, 72.0, 75.0]
+    weekday: [25.0, 33.0, 36.0, 40.0, 45.0, 49.0, 52.0, 54.0, 60.0],
+    weekend: [30.0, 36.0, 44.0, 50.0, 54.0, 60.0, 64.0, 68.0, 70.0]
   }
 };
 
@@ -88,6 +88,27 @@ function handleCounterButton(event) {
 
 function calculateTotal() {
   const serviceTypeInput = document.querySelector('input[name="serviceType"]');
+  const serviceType = serviceTypeInput?.value;
+
+  // Handle massage service (1€ per minute)
+  if (serviceType === 'massage') {
+    const minutesInput = document.getElementById('minutes');
+    if (!minutesInput) {
+      console.error('Minutes input not found for massage service');
+      return;
+    }
+
+    const minutes = Math.max(15, parseInt(minutesInput.value, 10) || 60);
+    minutesInput.value = minutes;
+
+    const basePrice = minutes * 1.0; // 1€ per minute
+    const total = basePrice;
+
+    updateDisplayMassage(basePrice, total, minutes);
+    return;
+  }
+
+  // Handle regular sauna services
   const periodInput = document.querySelector('input[name="period"]:checked');
   const hoursInput = document.getElementById('hours');
 
@@ -97,7 +118,6 @@ function calculateTotal() {
   }
 
   const period = periodInput.value;
-  const serviceType = serviceTypeInput.value;
   const adults = Math.max(2, parseInt(document.getElementById('adultsCount')?.value, 10) || 2);
   const childrenOld = Math.max(0, parseInt(document.getElementById('childrenOld')?.value, 10) || 0);
   const banshchik = Math.max(0, parseInt(document.getElementById('banshchikCount')?.value, 10) || 0);
@@ -139,6 +159,11 @@ function updateDisplay(basePrice, extraAdults, children, banshchik, birch, oak, 
   toggleRow('banshchikRow', 'banshchikPrice', banshchik);
   toggleRow('birchVenikiRow', 'birchVenikiPrice', birch);
   toggleRow('oakVenikiRow', 'oakVenikiPrice', oak);
+  setText('totalPrice', formatPrice(total));
+}
+
+function updateDisplayMassage(basePrice, total, minutes) {
+  setText('basePrice', formatPrice(basePrice) + ' (' + minutes + ' мин)');
   setText('totalPrice', formatPrice(total));
 }
 
